@@ -8,34 +8,39 @@ const errorHandler = require('./middleware/error');
 // Load environment variables
 dotenv.config();
 
-// Connect to MongoDB
-connectDB();
-
 const app = express();
 
 // Body Parser Middleware
 app.use(express.json());
 
-// Enable CORS
-const allowedOrigins = [
-  'http://localhost:5173',
-  'https://syncplan-gamma.vercel.app',
-  process.env.FRONTEND_URL,
-].filter(Boolean);
-
+// Enable CORS - allow any localhost port for dev + deployed frontend
 app.use(cors({
   origin: (origin, callback) => {
     // Allow requests with no origin (e.g. curl, Postman, mobile apps)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
-    return callback(new Error(`CORS blocked: ${origin}`));
+    // Allow any localhost port for local development
+    if (origin.match(/^http:\/\/localhost:\d+$/)) return callback(null, true);
+    // Allow deployed frontend
+    if (origin === 'https://syncplan-gamma.vercel.app') return callback(null, true);
+    // Allow custom frontend URL from env
+    if (process.env.FRONTEND_URL && origin === process.env.FRONTEND_URL) return callback(null, true);
+    return callback(null, false);
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 }));
+
+// Ensure DB is connected before handling any request (critical for serverless)
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    console.error('DB connection middleware error:', err.message);
+    res.status(500).json({ success: false, message: 'Database connection failed' });
+  }
+});
 
 // HTTP Request Logger
 if (process.env.NODE_ENV !== 'production') {
