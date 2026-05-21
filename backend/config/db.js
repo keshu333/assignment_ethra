@@ -20,6 +20,7 @@ const connectDB = async () => {
     if (process.env.NODE_ENV !== 'production') {
       process.exit(1);
     }
+    throw error; // Rethrow to let the middleware handle it
   }
 };
 
