@@ -8,6 +8,9 @@ const errorHandler = require('./middleware/error');
 // Load environment variables
 dotenv.config();
 
+// Connect to MongoDB eagerly in local dev (for serverless, per-request middleware handles it)
+connectDB();
+
 const app = express();
 
 // Body Parser Middleware
