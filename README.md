@@ -138,25 +138,24 @@ Navigate to `http://localhost:5173` in your browser.
 
 ## 🚀 Deployment Guide
 
-### Frontend (Vercel)
-1. Build the project: `cd frontend && npm run build`
-2. Push your repository to GitHub.
-3. Import the project into Vercel.
-4. Set the Framework Preset to **Vite**.
-5. Update `src/services/api.js` to point `API_BASE_URL` to your production backend URL before deploying, or use Vercel Environment Variables.
-6. Deploy!
-
-### Backend (Railway)
-1. Push your backend code to GitHub.
-2. Create a new project in [Railway.app](https://railway.app/).
-3. Provision a **MongoDB Database** service within your Railway project.
-4. Deploy the backend from your GitHub repository.
-5. Add the following Environment Variables in Railway:
-   - `MONGO_URI` (Use the internal connection string provided by the Railway MongoDB service)
+### Backend (Vercel)
+1. Push your repository to GitHub.
+2. Import the project into Vercel and create a new project.
+3. Set the **Root Directory** to `backend`.
+4. Ensure the Framework Preset is set to `Other`.
+5. Add the following Environment Variables in Vercel:
+   - `MONGO_URI` (Your MongoDB Atlas connection string)
    - `JWT_SECRET`
-   - `PORT` (Railway assigns this automatically)
-6. Redeploy the backend.
+   - `NODE_ENV` (Set to `production`)
+6. Deploy! Vercel will automatically detect `vercel.json` and deploy it as a Serverless Function.
 
+### Frontend (Vercel)
+1. Import the same repository into Vercel and create a second project.
+2. Set the **Root Directory** to `frontend`.
+3. Set the Framework Preset to **Vite** (should be auto-detected).
+4. Add a new Environment Variable in Vercel:
+   - `VITE_API_URL`: Your deployed backend URL (e.g., `https://your-backend.vercel.app/api`)
+5. Deploy! Vercel will use the provided `vercel.json` to handle React Router SPA fallbacks.
 ## 📸 Screenshots
 
 *(Add screenshots of your stunning Glassmorphic Dashboard, Kanban Board, and Dark Mode here)*
