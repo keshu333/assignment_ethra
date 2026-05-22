@@ -9,8 +9,8 @@ dotenv.config({ path: `${__dirname}/../.env` });
 
 const usersData = [
   {
-    name: 'Sarah Connor',
-    email: 'admin@test.com',
+    name: 'keshu',
+    email: 'keshu77@gmail.com',
     password: 'password123',
     role: 'admin',
     avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',

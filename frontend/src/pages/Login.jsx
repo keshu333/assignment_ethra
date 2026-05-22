@@ -34,7 +34,7 @@ const Login = () => {
 
   const handleQuickLogin = (role) => {
     if (role === 'admin') {
-      setEmail('admin@test.com');
+      setEmail('keshu77@gmail.com');
       setPassword('password123');
       showToast('Admin credentials filled!', 'info');
     } else {
