@@ -34,15 +34,15 @@ const Login = () => {
 
   const handleQuickLogin = (role) => {
     if (role === 'admin') {
-      setEmail('keshu77@gmail.com');
+      setEmail('');
       setPassword('');
-      showToast('Please enter the Admin password', 'info');
-      setTimeout(() => document.getElementById('password-input')?.focus(), 100);
+      showToast('Please enter Admin email and password', 'info');
+      setTimeout(() => document.getElementById('email-input')?.focus(), 100);
     } else {
-      setEmail('member@test.com');
+      setEmail('');
       setPassword('');
-      showToast('Please enter the Member password', 'info');
-      setTimeout(() => document.getElementById('password-input')?.focus(), 100);
+      showToast('Please enter Member email and password', 'info');
+      setTimeout(() => document.getElementById('email-input')?.focus(), 100);
     }
   };
 
@@ -71,6 +71,7 @@ const Login = () => {
             <div className="relative">
               <Mail className="absolute left-3.5 top-3.5 w-4.5 h-4.5 text-slate-500" />
               <input
+                id="email-input"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
