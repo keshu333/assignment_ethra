@@ -70,7 +70,7 @@ const Register = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Jane Doe"
-                className="w-full glass-input pl-11"
+                className="w-full glass-input !pl-11"
                 required
               />
             </div>
@@ -85,7 +85,7 @@ const Register = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="jane@example.com"
-                className="w-full glass-input pl-11"
+                className="w-full glass-input !pl-11"
                 required
               />
             </div>
@@ -100,7 +100,7 @@ const Register = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full glass-input pl-11"
+                className="w-full glass-input !pl-11"
                 required
               />
             </div>
