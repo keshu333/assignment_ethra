@@ -35,8 +35,9 @@ const Login = () => {
   const handleQuickLogin = (role) => {
     if (role === 'admin') {
       setEmail('keshu77@gmail.com');
-      setPassword('password123');
-      showToast('Admin credentials filled!', 'info');
+      setPassword('');
+      showToast('Please enter the Admin password', 'info');
+      setTimeout(() => document.getElementById('password-input')?.focus(), 100);
     } else {
       setEmail('member@test.com');
       setPassword('password123');
@@ -84,6 +85,7 @@ const Login = () => {
             <div className="relative">
               <Lock className="absolute left-3.5 top-3.5 w-4.5 h-4.5 text-slate-500" />
               <input
+                id="password-input"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
