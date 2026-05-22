@@ -40,8 +40,9 @@ const Login = () => {
       setTimeout(() => document.getElementById('password-input')?.focus(), 100);
     } else {
       setEmail('member@test.com');
-      setPassword('password123');
-      showToast('Member credentials filled!', 'info');
+      setPassword('');
+      showToast('Please enter the Member password', 'info');
+      setTimeout(() => document.getElementById('password-input')?.focus(), 100);
     }
   };
 
